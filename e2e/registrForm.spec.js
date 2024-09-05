@@ -1,32 +1,34 @@
 import {test, expect} from '@playwright/test';
 
-test.beforeEach(async ({ page }) => {
+test.describe(('Form Registration'), () => {
+
+  test.beforeEach(async ({ page }) => {
     const signUpBtn = page.locator('.hero-descriptor_btn.btn.btn-primary')
     //await page.pause();
     await page.goto('/');
     await signUpBtn.click();
-  });
+  })
 
-//  test('Registration with correct info', async ({ page }) => {
+  test('Registration with correct info', async ({ page }) => {
 
-//     const name = page.locator('#signupName')
-//     const lastName = page.locator('#signupLastName')
-//     const email = page.locator('#signupEmail')
-//     const password = page.locator('#signupPassword')
-//     const rePassword = page.locator('#signupRepeatPassword')
-//     const registerBtn = page.locator('div.modal-footer button.btn.btn-primary')
+    const name = page.locator('#signupName')
+    const lastName = page.locator('#signupLastName')
+    const email = page.locator('#signupEmail')
+    const password = page.locator('#signupPassword')
+    const rePassword = page.locator('#signupRepeatPassword')
+    const registerBtn = page.locator('div.modal-footer button.btn.btn-primary')
 
-//     await name.fill('Antony');
-//     await lastName.fill('Bafflast');
-//     await email.fill('aqa4@mail.com');
-//     await password.fill('Qwerty24');
-//     await rePassword.fill('Qwerty24');
-//     await registerBtn.click();
+    await name.fill('Antony');
+    await lastName.fill('Bafflast');
+    await email.fill('aqa4@mail.com');
+    await password.fill('Qwerty24');
+    await rePassword.fill('Qwerty24');
+    await registerBtn.click();
 
-//     await page.pause();
-// });
+    await page.pause();
+});
 
- test('Field Name', async ({ page }) => {
+  test('Field Name', async ({ page }) => {
      const name = page.locator('#signupName');
      const lastName = page.locator('#signupLastName');
      const nameRequired = page.locator('div.invalid-feedback');
@@ -50,14 +52,14 @@ test.beforeEach(async ({ page }) => {
 
  });
 
- test('Field Last Name', async ({ page }) => {
-  const name = page.locator('#signupName');
-  const lastName = page.locator('#signupLastName');
-  const lastNameRequired = page.locator('div.invalid-feedback');
-  const lastNameIsInvalid = page.locator('div.invalid-feedback').nth(1);
-  const wrongLengthLast = page.locator('div.invalid-feedback').nth(1);
-  const borderColor = await lastName.evaluate((el) => {
-   return window.getComputedStyle(el).borderColor;
+  test('Field Last Name', async ({ page }) => {
+    const name = page.locator('#signupName');
+    const lastName = page.locator('#signupLastName');
+    const lastNameRequired = page.locator('div.invalid-feedback');
+    const lastNameIsInvalid = page.locator('div.invalid-feedback').nth(1);
+    const wrongLengthLast = page.locator('div.invalid-feedback').nth(1);
+    const borderColor = await lastName.evaluate((el) => {
+    return window.getComputedStyle(el).borderColor;
  });
 
   await lastName.click();
@@ -74,9 +76,9 @@ test.beforeEach(async ({ page }) => {
     
  });
 
-test('Field Email', async ({ page }) => {
+  test('Field Email', async ({ page }) => {
   const name = page.locator('#signupName');
-  const email = page.locator('#signupEmail')
+  const email = page.locator('#signupEmail');
   const emailRequired = page.locator('div.invalid-feedback');
   const emailIncorrect = page.locator('div.invalid-feedback').nth(1);
   const borderColor = await email.evaluate((el) => {
@@ -92,7 +94,7 @@ test('Field Email', async ({ page }) => {
     
 });
 
-test('Field Password', async ({ page }) => {
+  test('Field Password', async ({ page }) => {
   const name = page.locator('#signupName');
   const password = page.locator('#signupPassword')
   const passwordRequired = page.locator('div.invalid-feedback');
@@ -115,7 +117,7 @@ test('Field Password', async ({ page }) => {
 
 });
 
-test('Field Re-enter Password', async ({ page }) => {
+  test('Field Re-enter Password', async ({ page }) => {
   const name = page.locator('#signupName');
   const password = page.locator('#signupPassword')
   const rePassword = page.locator('#signupRepeatPassword')
@@ -145,7 +147,7 @@ test('Field Re-enter Password', async ({ page }) => {
     
 });
 
- test('Button Register', async ({ page }) => {
+  test('Button Register', async ({ page }) => {
       const name = page.locator('#signupName')
       const lastName = page.locator('#signupLastName')
       const email = page.locator('#signupEmail')
@@ -177,3 +179,5 @@ test('Field Re-enter Password', async ({ page }) => {
       await expect(registerBtn).toBeDisabled();
     
  })
+
+})
