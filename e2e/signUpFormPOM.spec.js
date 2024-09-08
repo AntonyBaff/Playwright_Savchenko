@@ -2,15 +2,17 @@ import {test, expect} from '@playwright/test';
 import SignUpForm from '../src/page-object/components/forms/SignUpForm';
 import SIGNUP_FORM_ERRORS from '../src/utils/constans';
 
-test.describe(('Form Registration'), () => {
 
+test.describe(('Form Registration'), () => {
+  require('dotenv').config();
   let signUpForm;
 
   test.beforeEach(async ({ page }) => {
     signUpForm = new SignUpForm(page);
     const signUpBtn = page.locator('.hero-descriptor_btn.btn.btn-primary')
-    await page.pause();
-    await page.goto('/');
+    const baseUrl = process.env.BASE_URL;
+    //await page.pause();
+    await page.goto(baseUrl);
     await signUpBtn.click();
 
   })
